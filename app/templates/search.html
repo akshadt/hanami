@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results - Hanami{% endblock %}
+
+{% block content %}
+<div class="mb-5 mt-4">
+    <h2 class="display-5">Search Results {% if query %}for "<span class="text-accent">{{ query }}</span>"{% endif %}</h2>
+    <p class="text-secondary">Showing top results from Jikan API.</p>
+</div>
+
+<div class="magazine-grid">
+    {% for anime in results %}
+    <a href="{{ url_for('main.detail', anime_id=anime.id) }}" class="text-decoration-none">
+        <div class="anime-card">
+            {% if anime.rating and anime.rating != 'N/A' %}
+            <span class="badge-rating">{{ anime.rating }}</span>
+            {% endif %}
+            
+            <img src="{{ anime.image_url }}" alt="{{ anime.title }}" class="anime-card-img" onerror="this.src='https://via.placeholder.com/300x400/1e1e1e/888888?text=Image+Not+Found'">
+            
+            <div class="anime-card-body">
+                <h5 class="anime-title" title="{{ anime.title }}">{{ anime.title }}</h5>
+            </div>
+        </div>
+    </a>
+    {% else %}
+        {% if query %}
+        <p class="text-secondary" style="grid-column: 1/-1;">No results found. Try a different search.</p>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

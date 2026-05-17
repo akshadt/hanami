@@ -1,0 +1,248 @@
+:root {
+    --bg-color: #0f0f11;
+    --surface-color: #1a1a1c;
+    --surface-hover: #262629;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a1a1aa;
+    --accent-color: #ef4444;
+    --accent-hover: #fca5a5;
+    --border-radius: 16px;
+    --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+    --transition-speed: 0.3s;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--surface-hover);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+a:hover {
+    color: var(--accent-color);
+}
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+.navbar {
+    background: rgba(15, 15, 17, 0.8) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 1.2rem 0;
+}
+.navbar-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--accent-color) !important;
+    letter-spacing: -0.5px;
+}
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--text-primary) !important;
+}
+
+.search-input {
+    background-color: var(--surface-color);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-radius: 30px;
+    padding: 0.6rem 1.5rem;
+}
+.search-input:focus {
+    background-color: var(--surface-hover);
+    border-color: var(--accent-color);
+    box-shadow: none;
+    color: white;
+}
+
+.anime-card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+}
+.anime-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.anime-card-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+.anime-card:hover .anime-card-img {
+    transform: scale(1.08);
+}
+.anime-card-body {
+    padding: 1.5rem;
+    position: relative;
+    background: linear-gradient(180deg, transparent 0%, rgba(26,26,28,0.8) 40%, var(--surface-color) 100%);
+    margin-top: -80px;
+    z-index: 2;
+}
+.anime-title {
+    font-size: 1.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+.badge-rating {
+    background: rgba(15, 15, 17, 0.7);
+    backdrop-filter: blur(8px);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+}
+
+.hero {
+    padding: 8rem 0 6rem;
+    text-align: center;
+}
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.detail-banner {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-subtle);
+}
+.detail-content {
+    background-color: var(--surface-color);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: var(--shadow-subtle);
+}
+
+@media (min-width: 992px) {
+    .detail-content {
+        margin-top: 100px;
+        margin-left: -50px;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.btn-custom {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.8rem;
+    font-weight: 600;
+}
+.btn-custom:hover {
+    background-color: var(--accent-hover);
+    color: #121212;
+}
+.btn-outline-custom {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+.btn-outline-custom:hover {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+}
+.horizontal-scroll .anime-card {
+    min-width: 260px;
+    max-width: 260px;
+    flex: 0 0 auto;
+}
+.horizontal-scroll .anime-card-img {
+    height: 350px;
+}
+
+.magazine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+}
+@media (min-width: 768px) {
+    .magazine-grid .anime-card:nth-child(even) {
+        transform: translateY(40px);
+    }
+    .magazine-grid .anime-card:nth-child(even):hover {
+        transform: translateY(28px);
+    }
+    .magazine-grid {
+        padding-bottom: 40px;
+    }
+}

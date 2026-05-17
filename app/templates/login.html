@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Hanami{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6 mt-5">
+        <div class="detail-content text-center py-5">
+            <h1 class="display-4 fw-bold mb-4">Welcome Back</h1>
+            <p class="text-secondary mb-5 fs-5">logging you in as user one.</p>
+            <div class="d-grid gap-3 col-8 mx-auto">
+                <a href="{{ url_for('main.index') }}" class="btn btn-custom py-3 fs-5">Return Home</a>
+                <a href="{{ url_for('main.profile') }}" class="btn btn-outline-custom py-3 fs-5">View Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

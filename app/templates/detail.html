@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ anime.title }} - Hanami{% endblock %}
+
+{% block content %}
+<div class="row gx-lg-5 align-items-start mt-4">
+    <div class="col-lg-5 mb-5 mb-lg-0">
+        <img src="{{ anime.image_url }}" alt="{{ anime.title }}" class="detail-banner" onerror="this.src='https://via.placeholder.com/600x800/1e1e1e/888888?text=Image+Not+Found'">
+    </div>
+    
+    <div class="col-lg-7">
+        <div class="detail-content">
+            <h1 class="display-4 fw-bold mb-3">{{ anime.title }}</h1>
+            
+            <div class="d-flex align-items-center mb-4">
+                <h4 class="mb-0 me-3">Rating: <span class="text-accent">{{ anime.rating }}</span></h4>
+            </div>
+            
+            <form action="{{ url_for('main.rate', anime_id=anime.id) }}" method="POST" class="mb-5 p-3 rounded" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);">
+                <div class="d-flex gap-3 align-items-center flex-wrap">
+                    <label class="fw-bold mb-0">List Status:</label>
+                    <select name="status" class="form-select w-auto bg-dark text-light border-secondary">
+                        <option value="" disabled {% if not status %}selected{% endif %}>Add to list...</option>
+                        <option value="watching" {% if status and status.status == 'watching' %}selected{% endif %}>Watching</option>
+                        <option value="completed" {% if status and status.status == 'completed' %}selected{% endif %}>Completed</option>
+                        <option value="plan" {% if status and status.status == 'plan' %}selected{% endif %}>Plan to Watch</option>
+                        {% if status %}
+                        <option value="remove">-- Remove from list --</option>
+                        {% endif %}
+                    </select>
+                    <button type="submit" class="btn btn-custom">Save</button>
+                </div>
+            </form>
+            
+            <div class="mt-4">
+                <h4 class="mb-3">Synopsis</h4>
+                <p class="text-secondary" style="line-height: 1.8; font-size: 1.1rem;">
+                    {{ anime.synopsis if anime.synopsis else "No synopsis available." }}
+                </p>
+            </div>
+            
+            <div class="mt-5 pt-4 border-top border-secondary opacity-75">
+                <ul class="list-unstyled text-secondary d-flex gap-4">
+                    <li><strong>MAL ID:</strong> {{ anime.mal_id }}</li>
+                    <li><strong>Internal ID:</strong> {{ anime.id }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

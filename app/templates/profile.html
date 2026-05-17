@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Hanami{% endblock %}
+
+{% block content %}
+<div class="mb-5 mt-4">
+    <h1 class="display-3 fw-bold">Hello, <span class="text-accent">{{ user.username }}</span></h1>
+    <p class="text-secondary fs-5">Track your media journey.</p>
+</div>
+
+{% macro render_anime_row(animes, title) %}
+    <div class="mb-5">
+        <h3 class="mb-4">{{ title }} <span class="text-secondary fs-6 align-middle ms-2 px-2 py-1 rounded" style="background: rgba(255,255,255,0.1);">{{ animes|length }}</span></h3>
+        {% if animes %}
+        <div class="horizontal-scroll">
+            {% for anime in animes %}
+            <a href="{{ url_for('main.detail', anime_id=anime.id) }}" class="text-decoration-none">
+                <div class="anime-card">
+                    <img src="{{ anime.image_url }}" alt="{{ anime.title }}" class="anime-card-img" onerror="this.src='https://via.placeholder.com/300x400/1e1e1e/888888?text=Image+Not+Found'">
+                    <div class="anime-card-body">
+                        <h6 class="anime-title">{{ anime.title }}</h6>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="p-4 rounded mb-5" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+            <p class="text-secondary mb-0 text-center">Nothing here yet.</p>
+        </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{{ render_anime_row(lists['watching'], "Watching") }}
+{{ render_anime_row(lists['completed'], "Completed") }}
+{{ render_anime_row(lists['plan'], "Plan to Watch") }}
+
+{% endblock %}
